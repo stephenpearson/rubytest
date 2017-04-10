@@ -1,0 +1,2 @@
+FROM ubuntu:16.04
+RUN apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev && \curl -L https://github.com/rbenv/ruby-build/archive/v20170405.tar.gz | tar zxvf - -C /tmp/ && cd /tmp/ruby-build-* && ./install.sh && cd / && rm -rfv /tmp/ruby-build* && ruby-build -v 2.4.1 /usr/local && gem install bundler rubygems-bundler --no-rdoc --no-ri && gem regenerate_binstubs && gem install rubocop && apt-get remove --purge -y build-essential && apt-get clean && rm -rf /var/lib/apt/lists/*
